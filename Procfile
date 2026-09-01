@@ -1,0 +1,1 @@
+worker: LD_LIBRARY_PATH=/app/.apt/usr/lib/x86_64-linux-gnu/lapack:/app/.apt/usr/lib/x86_64-linux-gnu/blas:/app/.apt/usr/lib/x86_64-linux-gnu/pulseaudio:/app/.apt/usr/lib/x86_64-linux-gnu:/app/.apt/usr/lib:/app/.apt/lib:${LD_LIBRARY_PATH} python -m ZefronMusic

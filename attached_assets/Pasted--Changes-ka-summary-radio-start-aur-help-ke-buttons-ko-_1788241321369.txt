@@ -1,0 +1,109 @@
+### Changes ka summary
+
+`/radio`, `/start` aur `/help` ke buttons ko Telegram Bot API 10.3 ke **embedded Rich Message buttons** mein convert kiya gaya.
+
+#### 1. Direct Bot API client add kiya
+
+Nayi file:
+
+- `ZefronMusic/helpers/_bot_api.py`
+
+Ismein `aiohttp` ke through:
+
+- `sendRichMessage`
+- `editMessageText`
+
+implement kiya gaya. Isse buttons normal `reply_markup` ke neeche nahi, balki message ke andar `blocks` ke form mein send hote hain.
+
+#### 2. Rich UI layouts create kiye
+
+Nayi file:
+
+- `ZefronMusic/helpers/_rich_layouts.py`
+
+Ismein reusable layouts banaye gaye:
+
+- `start_rich_message()`
+- `help_rich_message()`
+- Embedded photo block
+- Paragraph/text block
+- Button rows
+- Center alignment
+- Primary, neutral aur danger styles
+
+#### 3. `/start` UI
+
+`/start` ab rich message ke saath:
+
+- Top image
+- Existing welcome text
+- Add Me button
+- Help button
+- Support + Channel buttons
+- Private chat mein Owner button
+
+use karta hai.
+
+Original layout aur button order preserve rakha gaya hai.
+
+#### 4. `/help` UI
+
+`/help` mein original layout restore kiya gaya:
+
+```text
+3 buttons
+3 buttons
+3 buttons
+3 buttons
+Back button
+```
+
+Help category open karne, category se back aane aur `/start` par return karne ke buttons bhi embedded rich message ke andar edit hote hain.
+
+#### 5. `/radio` UI
+
+Radio menu mein bhi:
+
+- Top radio image
+- Genre/station text
+- Embedded station buttons
+- Embedded pagination buttons
+
+add kiye gaye.
+
+#### 6. Existing callbacks preserve kiye
+
+Button callback data change nahi kiya gaya. Isliye existing flows jaise:
+
+- `help`
+- `help_main`
+- `help_play`
+- `radio:...`
+- `start`
+
+same tarah kaam karte hain.
+
+#### 7. Safe fallback rakha
+
+Agar Bot API rich message reject kare ya client/server support na kare, bot automatically old Pyrogram format par fallback karta hai:
+
+- Photo + normal inline keyboard
+- Ya text + normal inline keyboard
+
+Isse feature fail hone par bot completely break nahi hoga.
+
+#### 8. Import aur configuration fix
+
+`ZefronMusic/helpers/__init__.py` mein missing `config` import fix kiya gaya, taaki Bot API client safely `BOT_TOKEN` use kar sake.
+
+### Verification
+
+- Python compile checks pass
+- Rich payload structure validate
+- Photo blocks validate
+- Button rows validate
+- Original Help `3/3/3/3/1` layout validate
+- Workflow restart successful
+- Bot, assistant, PyTgCalls aur 30 plugins successfully load hue
+
+Overall, old UI layout preserve karke buttons ko naye embedded Rich Message format mein shift kiya gaya.

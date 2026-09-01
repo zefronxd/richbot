@@ -1,0 +1,29 @@
+Bot started successfully! Ready to play music! 🎵
+
+[30-Aug-26 16:18:45 - ERROR] - pyrogram.dispatcher: Unexpected exception raised in CallbackQueryHandler:
+Traceback (most recent call last):
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/dispatcher.py", line 448, in handler_worker
+    await handler.callback(self.client, *args)
+  File "/home/runner/workspace/ZefronMusic/core/lang.py", line 117, in wrapper
+    return await func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/ZefronMusic/plugins/playback/radio.py", line 199, in radio_callback
+    await query.answer("📻 Connecting to the radio station...")
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/types/bots_and_keyboards/callback_query.py", line 206, in answer
+    return await self._client.answer_callback_query(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/methods/bots/answer_callback_query.py", line 75, in answer_callback_query
+    return await self.invoke(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/methods/advanced/invoke.py", line 107, in invoke
+    r = await session.invoke(
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/session/session.py", line 551, in invoke
+    return await self.send(query, timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/session/session.py", line 514, in send
+    RPCError.raise_it(result, type(data))
+  File "/home/runner/workspace/.pythonlibs/lib/python3.12/site-packages/pyrogram/errors/rpc_error.py", line 156, in raise_it
+    raise error_type(
+pyrogram.errors.exceptions.bad_request_400.QueryIdInvalid: Telegram says: [400 QUERY_ID_INVALID] - The query ID is invalid. (caused by "messages.SetBotCallbackAnswer")
+[30-Aug-26 16:19:08 - WARNING] - ZefronMusic: Cookies are missing; downloads might fail.

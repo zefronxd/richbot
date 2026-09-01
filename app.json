@@ -1,0 +1,67 @@
+{
+  "name": "ZefronMusic Telegram Bot",
+  "description": "A Telegram music and live radio bot powered by Pyrogram and PyTgCalls.",
+  "keywords": [
+    "telegram",
+    "music-bot",
+    "radio",
+    "pyrogram",
+    "pytgcalls"
+  ],
+  "buildpacks": [
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-python.git"
+    },
+    {
+      "url": "https://github.com/heroku/heroku-buildpack-apt"
+    }
+  ],
+  "env": {
+    "API_ID": {
+      "description": "Telegram API ID from my.telegram.org/apps.",
+      "required": true
+    },
+    "API_HASH": {
+      "description": "Telegram API hash from my.telegram.org/apps.",
+      "required": true
+    },
+    "BOT_TOKEN": {
+      "description": "Bot token from @BotFather.",
+      "required": true
+    },
+    "MONGO_DB_URI": {
+      "description": "MongoDB connection URI.",
+      "required": true
+    },
+    "LOGGER_ID": {
+      "description": "Telegram chat ID where bot logs are sent.",
+      "required": true
+    },
+    "OWNER_ID": {
+      "description": "Telegram user ID of the bot owner.",
+      "required": true
+    },
+    "STRING_SESSION": {
+      "description": "Pyrogram string session for the assistant account.",
+      "required": true
+    },
+    "COOKIE_URL": {
+      "description": "Optional legacy YouTube cookie URL. Remote cookie loading is disabled; use local cookies only.",
+      "required": false
+    },
+    "SPOTIFY_CLIENT_ID": {
+      "description": "Optional Spotify client ID.",
+      "required": false
+    },
+    "SPOTIFY_CLIENT_SECRET": {
+      "description": "Optional Spotify client secret.",
+      "required": false
+    }
+  },
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}
